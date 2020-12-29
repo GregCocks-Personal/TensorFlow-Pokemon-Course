@@ -18,7 +18,7 @@ def dummy_creation(df, dummy_categories):
         df = pd.concat([df,df_dummy],axis=1)
         df = df.drop(i, axis=1)
     return(df)
-    
+
 
 def train_test_splitter(DataFrame, column):
     df_train = DataFrame.loc[df[column] != 1]
@@ -28,24 +28,24 @@ def train_test_splitter(DataFrame, column):
     df_test = df_test.drop(column, axis=1)
 
     return(df_train, df_test)
-    
+
 
 def label_delineator(df_train, df_test, label):
-    
+
     train_data = df_train.drop(label, axis=1).values
     train_labels = df_train[label].values
     test_data = df_test.drop(label,axis=1).values
     test_labels = df_test[label].values
-    
+
     return(train_data, train_labels, test_data, test_labels)
-    
-    
+
+
 def data_normalizer(train_data, test_data):
-    
+
     train_data = preprocessing.MinMaxScaler().fit_transform(train_data)
     test_data = preprocessing.MinMaxScaler().fit_transform(test_data)
     return(train_data, test_data)
-    
+
 def predictor(test_data, test_labels, index):
     prediction = model.predict(test_data)
     if np.argmax(prediction[index]) == test_labels[index]:
@@ -53,7 +53,7 @@ def predictor(test_data, test_labels, index):
     else:
         return('This was incorrectly predicted to be a {}.\\n It was actually a {}'.format(np.argmax(prediction[index]),test_labels[index]))
         # return(prediction)
-    
+
 # -----
 
 # Start Work
@@ -104,3 +104,5 @@ print('--')
 strResult = predictor(test_data, test_labels, 149)
 print(strResult)
 print('--')
+
+print('DONE!')
