@@ -68,6 +68,8 @@ print(df.columns)
 print(df.head())
 print('--')
 
+print('DONE!')
+
 df['isLegendary'] = df['isLegendary'].astype(int)
 df = dummy_creation(df, ['Egg_Group_1', 'Body_Style', 'Color','Type_1', 'Type_2'])
 print(df.columns)
